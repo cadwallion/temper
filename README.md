@@ -24,22 +24,32 @@ custom minimum and maximum values for ease of integration with external control 
 (PWM-controlled heating elements, for example).  Once created, run `Temper::PID#control`
 in your control loop, feeding it sensor data.
 
-The algorithm being used is fixed interval and will not recalibrate until the time interval
-has passed before recalibrating.  This helps mitigate excess compensation and inconsistent
-adjustment. The update interval is also configurable in temper.
+### Minimum Interval Calculation
 
-Finally, when handling cooling-based temperature control, negative values are a pain for
+The algorithm being used is minimum interval and will not recalibrate until the time interval
+has passed before recalibrating.  This helps mitigate excess compensation and inconsistent
+adjustment. The update interval is also configurable in Temper with the `interval` option.
+
+### Directional Control
+
+When handling cooling-based temperature control, negative values are a pain for
 translation.  To assist with this, Temper uses a directional control parameter.  The two
 possible states are `:direct` and `:reverse`.  When using `:reverse`, negative values
 are inverted.
+
+### Tuning
+
+Temper's PID is manually tuned with the `tune` method, which takes a Kp, Ki, and Kd value. By
+default, Temper will set them to 1.0
 
 ## Example
 
 ``` ruby
 temper = Temper::PID.new(interval: 1000, minimum: 0, maximum: 1000, direction: :direct)
-temper.setpoint = 100.0 # Target temperature
+temper.tune(9.0, 25.0, 6.0) # Set Kp, Ki, and Kd
+temper.setpoint = 100.0       # Set target temperature
 
-while input = read_sensor() # Replace read_sensor with your external system
+while input = read_sensor()   # Replace read_sensor with your external system
   output = temper.control(input)
   # output is a value betwen minimum and maximum. This can be used for thresholds or
   # PWM-based control
