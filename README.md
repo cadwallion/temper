@@ -7,7 +7,7 @@ decrease overshoots and regulate based on continued inputs.
 
 Add this line to your application's Gemfile:
 
-    gem 'temper'
+    gem 'temper-control', require: 'temper'
 
 And then execute:
 
@@ -15,7 +15,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install temper
+    $ gem install temper-control
 
 ## Usage
 
@@ -45,6 +45,8 @@ default, Temper will set them to 1.0
 ## Example
 
 ``` ruby
+require 'temper'
+
 temper = Temper::PID.new(interval: 1000, minimum: 0, maximum: 1000, direction: :direct)
 temper.tune(9.0, 25.0, 6.0) # Set Kp, Ki, and Kd
 temper.setpoint = 100.0       # Set target temperature

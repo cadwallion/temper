@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'temper/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "temper"
+  gem.name          = "temper-control"
   gem.version       = Temper::VERSION
   gem.authors       = ["Andrew Nordman"]
   gem.email         = ["cadwallion@gmail.com"]
