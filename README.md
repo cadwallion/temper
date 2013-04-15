@@ -59,6 +59,8 @@ while input = read_sensor()   # Replace read_sensor with your external system
 end
 ```
 
+For more examples check out the [examples](examples/) directory.
+
 ## Contributing
 
 1. Fork it
