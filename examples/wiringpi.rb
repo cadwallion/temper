@@ -25,5 +25,5 @@ end = Time.now + 60
 while Time.now < end
   temperature = io.read SENSOR_PIN
   adjusted_power_level = pid.control temperature
-  io.pwmWrite adjusted_power_level
+  io.pwmWrite PWM_PIN, adjusted_power_level
 end
