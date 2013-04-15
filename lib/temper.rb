@@ -12,6 +12,10 @@ module Temper
       @output_maximum = options[:maximum] || 1000
       @output_minimum = options[:minimum] || 0
 
+      @kp = options.delete(:kp)
+      @ki = options.delete(:ki)
+      @kd = options.delete(:kd)
+
       set_mode options[:mode] || :auto
       set_direction options[:direction] || :direct
     end

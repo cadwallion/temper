@@ -40,7 +40,8 @@ are inverted.
 ### Tuning
 
 Temper's PID is manually tuned with the `tune` method, which takes a Kp, Ki, and Kd value. By
-default, Temper will set them to 1.0
+default, Temper will set them to 1.0.  `Temper::PID` also can take the kp, ki, and kd options
+in the constructor call.
 
 ## Example
 
